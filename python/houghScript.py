@@ -52,11 +52,11 @@ for img_name in imglist:
 
     Im1X = myImageFilterX(img_gray, hfilt)
     # cv2.normalize(Im1X,Im1X, 0, 1, cv2.NORM_MINMAX)
-    plt.imshow(Im1X,cmap="gray");plt.show()
+    #plt.imshow(Im1X,cmap="gray");plt.show()
 
 	# Q3.3
     ImEdge,Io,Ix,Iy = myEdgeFilter(img_gray, sigma)
-    # plt.imshow(ImEdge,cmap="gray");plt.show()
+    plt.imshow(ImEdge,cmap="gray");plt.show()
 
 
     Thresh = 0.2 # change it as needed
