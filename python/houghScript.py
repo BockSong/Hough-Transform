@@ -56,7 +56,7 @@ for img_name in imglist:
 
 	# Q3.3
     ImEdge,Io,Ix,Iy = myEdgeFilter(img_gray, sigma)
-    plt.imshow(ImEdge,cmap="gray");plt.show()
+    #plt.imshow(ImEdge,cmap="gray");plt.show()
 
 
     Thresh = 0.2 # change it as needed
@@ -65,7 +65,7 @@ for img_name in imglist:
 
  	# Q3.4
     H,rhoScale,thetaScale = myHoughTransform(ThrImEdge, rhoRes, thetaRes)
-    # plt.imshow(H);plt.show()
+    plt.imshow(H);plt.show()
 
 
  	# Q3.5
