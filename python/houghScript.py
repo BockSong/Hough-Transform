@@ -43,7 +43,11 @@ for img_name in imglist:
     img_gray = np.asarray(img_gray)
     hfilt = Gauss2D((5,5),sigma)
 
-
+    '''
+    print(img_rgb.shape)
+    print(img_gray.shape)
+    exit()
+    '''
 	# Q3.1 Convolution
     # you can change the parameters for Gauss2D
     Im1 = myImageFilter(img_gray, hfilt)
@@ -52,11 +56,11 @@ for img_name in imglist:
 
     Im1X = myImageFilterX(img_gray, hfilt)
     # cv2.normalize(Im1X,Im1X, 0, 1, cv2.NORM_MINMAX)
-    #plt.imshow(Im1X,cmap="gray");plt.show()
+    # plt.imshow(Im1X,cmap="gray");plt.show()
 
 	# Q3.3
     ImEdge,Io,Ix,Iy = myEdgeFilter(img_gray, sigma)
-    #plt.imshow(ImEdge,cmap="gray");plt.show()
+    # plt.imshow(ImEdge,cmap="gray");plt.show()
 
 
     Thresh = 0.2 # change it as needed
@@ -65,7 +69,7 @@ for img_name in imglist:
 
  	# Q3.4
     H,rhoScale,thetaScale = myHoughTransform(ThrImEdge, rhoRes, thetaRes)
-    plt.imshow(H);plt.show()
+    # plt.imshow(H);plt.show()
 
 
  	# Q3.5
@@ -74,7 +78,7 @@ for img_name in imglist:
 
     # Q3.6
     OutputImage  = myHoughLineSegments(img_rgb, ThrImEdge, Peakrhos, Peakthetas, rhoScale, thetaScale)
-    # plt.imshow(cv2.cvtColor(OutputImage, cv2.COLOR_BGR2RGB));plt.show()
+    plt.imshow(cv2.cvtColor(OutputImage, cv2.COLOR_BGR2RGB));plt.show()
 
  	# everything below here just saves the outputs to files
     fname = resultsdir + img_name.split('/')[-1][:-4]+'_01Blur.png'
