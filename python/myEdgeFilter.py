@@ -37,7 +37,7 @@ def myEdgeFilter(img0, sigma):
     
     Img1 = np.copy(Im)
 
-    # perform NMS
+    # perform NMS in the gradient directions
     dgroups = np.array([0, np.pi / 4, np.pi / 2, (3 / 4) * np.pi, np.pi, - np.pi / 4, - np.pi / 2, - (3 / 4) * np.pi, - np.pi])
     borderSize = 1 # assume a 3*3 filter for NMS
 
@@ -46,16 +46,16 @@ def myEdgeFilter(img0, sigma):
             idx = np.argmin(np.abs(dgroups - Io[i][j]))
 
             if idx == 0 or idx == 4 or idx == 9:
-                if (Im[i][j] < Im[i][j - 1] and Im[i][j] < Im[i][j + 1]):
+                if (Im[i][j] < Im[i][j - 1] or Im[i][j] < Im[i][j + 1]):
                     Img1[i][j] = 0
             elif idx == 2 or idx == 6:
-                if (Im[i][j] < Im[i - 1][j] and Im[i][j] < Im[i + 1][j]):
+                if (Im[i][j] < Im[i - 1][j] or Im[i][j] < Im[i + 1][j]):
                     Img1[i][j] = 0
             elif idx == 1 or idx == 8:
-                if (Im[i][j] < Im[i - 1][j - 1] and Im[i][j] < Im[i + 1][j + 1]):
+                if (Im[i][j] < Im[i - 1][j - 1] or Im[i][j] < Im[i + 1][j + 1]):
                     Img1[i][j] = 0
             elif idx == 3 or idx == 5:
-                if (Im[i][j] < Im[i - 1][j + 1] and Im[i][j] < Im[i + 1][j - 1]):
+                if (Im[i][j] < Im[i - 1][j + 1] or Im[i][j] < Im[i + 1][j - 1]):
                     Img1[i][j] = 0
 
     return Img1,Io,Ix,Iy
