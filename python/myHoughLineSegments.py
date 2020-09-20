@@ -9,7 +9,9 @@ def myHoughLineSegments(img_in, edgeimage, peakRho, peakTheta, rhosscale, thetas
     nLines = len(peakRho)
     img_output = np.copy(img_in)
 
-    img_output[:, :, 1] = cv2.add(img_output[:, :, 1], edgeimage * 255)
+    lines = (edgeimage * 255).astype(np.uint8)
+
+    img_output[:, :, 1] = cv2.add(img_output[:, :, 1], lines)
 
     '''
     for k in range(nLines):
@@ -17,7 +19,7 @@ def myHoughLineSegments(img_in, edgeimage, peakRho, peakTheta, rhosscale, thetas
         rho = rhosscale[peakRho[k]]
         theta = thetasscale[peakTheta[k]]
 
-        # TODO: get the line segment
+        # (not required) get the line segment
 
         # draw lines
         a = np.cos(theta)

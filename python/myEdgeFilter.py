@@ -41,6 +41,15 @@ def myEdgeFilter(img0, sigma):
     dgroups = np.array([0, np.pi / 4, np.pi / 2, (3 / 4) * np.pi, np.pi, - np.pi / 4, - np.pi / 2, - (3 / 4) * np.pi, - np.pi])
     borderSize = 1 # assume a 3*3 filter for NMS
 
+    # 0 pad
+    for j in range(len(Im[0])):
+        Img1[0][j] = 0
+        Img1[len(Im) - 1][j] = 0
+
+    for i in range(len(Im)):
+        Img1[i][0] = 0
+        Img1[i][len(Im[0]) - 1] = 0
+
     for i in range(borderSize, len(Im) - borderSize):
         for j in range(borderSize, len(Im[0]) - borderSize):
             idx = np.argmin(np.abs(dgroups - Io[i][j]))

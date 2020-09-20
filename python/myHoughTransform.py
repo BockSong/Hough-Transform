@@ -17,7 +17,7 @@ def myHoughTransform(InnputImage, rho_resolution, theta_resolution):
 
     # hough vote
     edges = np.argwhere(InnputImage > 0)
-
+    '''
     for i in range(len(edges)):
         x, y = edges[i][0], edges[i][1]
         for j in range(len(thetas)):
@@ -29,5 +29,5 @@ def myHoughTransform(InnputImage, rho_resolution, theta_resolution):
         
         if i % 1000 == 0:
             print(i * 1.0 / len(edges))
-
+    '''
     return H, rhos, thetas

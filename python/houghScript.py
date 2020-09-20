@@ -43,11 +43,6 @@ for img_name in imglist:
     img_gray = np.asarray(img_gray)
     hfilt = Gauss2D((5,5),sigma)
 
-    '''
-    print(img_rgb.shape)
-    print(img_gray.shape)
-    exit()
-    '''
 	# Q3.1 Convolution
     # you can change the parameters for Gauss2D
     Im1 = myImageFilter(img_gray, hfilt)
@@ -63,10 +58,16 @@ for img_name in imglist:
     # plt.imshow(ImEdge,cmap="gray");plt.show()
 
 
-    Thresh = 0.2 # change it as needed
+    Thresh = 50 #0.2 # change it as needed
     ThrImEdge = 1.0 * (ImEdge > Thresh)
     # plt.imshow(ThrImEdge,cmap="gray");plt.show()
 
+    print(ImEdge[:50, :20])
+    '''
+    print(img_rgb.dtype)
+    print(ThrImEdge.dtype)
+    exit()
+    '''
  	# Q3.4
     H,rhoScale,thetaScale = myHoughTransform(ThrImEdge, rhoRes, thetaRes)
     # plt.imshow(H);plt.show()
