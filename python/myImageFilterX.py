@@ -5,17 +5,17 @@ import math
 
 
 def myImageFilterX(img0, hfilt):
-    # Your implemention
+    hs = len(hfilt)
 
-    fSize = len(hfilt)
-    img1 = np.zeros_like(img0) # 0 padding
+    # zero padding
+    pSize = hs // 2
+    imgp = np.pad(img0, ((pSize, pSize), (pSize, pSize)), 'constant')
 
-    borderSize = math.floor(fSize / 2)
+    # im2col
+    ih, iw = (imgp.shape[0] - hs) + 1, (imgp.shape[1] - hs) + 1
+    strides = (*imgp.strides[:-2], imgp.strides[-2], imgp.strides[-1], *imgp.strides[-2:])
+    col = np.lib.stride_tricks.as_strided(imgp, shape=(ih,iw,hs,hs), strides=strides)
 
-    for i in range(borderSize, len(img0) - borderSize):
-        for j in range(borderSize, len(img0[0]) - borderSize):
-            area = img0[i - borderSize : i + borderSize + 1, j - borderSize : j + borderSize + 1]
-            #print(i, ", ", j, ", ", area.shape)
-            img1[i][j] = np.sum(area * hfilt) # element-wise
+    img1 = np.tensordot(col, hfilt)
 
     return img1

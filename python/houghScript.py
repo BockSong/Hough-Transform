@@ -51,7 +51,7 @@ for img_name in imglist:
 
     Im1X = myImageFilterX(img_gray, hfilt)
     # cv2.normalize(Im1X,Im1X, 0, 1, cv2.NORM_MINMAX)
-    # plt.imshow(Im1X,cmap="gray");plt.show()
+    plt.imshow(Im1X,cmap="gray");plt.show()
 
 	# Q3.3
     ImEdge,Io,Ix,Iy = myEdgeFilter(img_gray, sigma)
@@ -62,8 +62,8 @@ for img_name in imglist:
     ThrImEdge = 1.0 * (ImEdge > Thresh)
     # plt.imshow(ThrImEdge,cmap="gray");plt.show()
 
-    print(ImEdge[:50, :20])
     '''
+    print(ImEdge[:50, :20])
     print(img_rgb.dtype)
     print(ThrImEdge.dtype)
     exit()
